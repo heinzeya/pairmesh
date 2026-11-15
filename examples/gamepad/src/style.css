@@ -1,0 +1,200 @@
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #e4e4e7;
+  --text: #0a0a0a;
+  --muted: #52525b;
+  --slide-bg: #172036;
+  --slide-text: #ffffff;
+  --slide-muted: #a8b3cf;
+  --btn-bg: #0a0a0a;
+  --btn-text: #ffffff;
+  --badge-bg: #f0f0f1;
+  --warn-bg: #fef3c7;
+  --warn-text: #92400e;
+  --ok-bg: #dcfce7;
+  --ok-text: #166534;
+  --error-bg: #fee2e2;
+  --error-text: #991b1b;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0b;
+    --surface: #141416;
+    --border: #2a2a2e;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --btn-bg: #f4f4f5;
+    --btn-text: #0a0a0a;
+    --badge-bg: #27272a;
+    --warn-bg: #422006;
+    --warn-text: #fcd34d;
+    --ok-bg: #052e16;
+    --ok-text: #86efac;
+    --error-bg: #450a0a;
+    --error-text: #fca5a5;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.page { max-width: 880px; margin: 0 auto; padding: 24px 16px; }
+.page-pad { max-width: 440px; padding-top: 12px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 14px; }
+.panel { padding: 16px 12px 6px; }
+.panel-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.panel-header h2 { margin: 0; font-size: 1.15rem; font-weight: 600; }
+
+.muted { color: var(--muted); }
+.center { text-align: center; }
+.error { color: var(--error-text); }
+.hint { margin: 0 0 12px; padding: 10px 14px; border-radius: 12px; background: var(--warn-bg); color: var(--warn-text); font-size: 0.9rem; }
+
+.badge { padding: 2px 10px; border-radius: 999px; background: var(--badge-bg); font-size: 0.85rem; white-space: nowrap; }
+.badge-warn { background: var(--warn-bg); color: var(--warn-text); }
+.badge-ok { background: var(--ok-bg); color: var(--ok-text); }
+.badge-error { background: var(--error-bg); color: var(--error-text); }
+
+.pairing-waiting { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.qr { width: 168px; padding: 8px; border-radius: 12px; background: #fff; border: 1px solid var(--border); }
+.qr svg { display: block; width: 100%; height: auto; }
+.pairing-help { flex: 1 1 240px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.pairing-help p { margin: 0; color: var(--muted); }
+
+.btn, .btn-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; cursor: pointer; text-decoration: none; }
+.btn { width: 100%; min-height: 48px; padding: 10px 20px; border: 0; border-radius: 999px; background: var(--btn-bg); color: var(--btn-text); font-size: 1.05rem; }
+.btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.pairing-help .btn { width: auto; min-height: 40px; font-size: 0.95rem; }
+.btn-link { padding: 0; border: 0; background: none; color: var(--muted); font-size: 0.9rem; }
+.btn:hover, .btn-link:hover { opacity: 0.85; }
+.btn:focus-visible, .btn-link:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
+
+.card > .pad-stage + .panel { margin-top: 4px; }
+
+/* Gamepad */
+.pad-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--slide-bg);
+  color: var(--slide-text);
+}
+.pad-stage .gamepad { flex: 1 1 320px; }
+
+.input-log {
+  flex: 1 1 160px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--slide-muted);
+}
+.input-log li { padding: 2px 0; }
+.input-log li:first-child { color: var(--slide-text); }
+.input-log li.empty { color: var(--slide-muted); }
+
+.gamepad {
+  --pad-btn: var(--surface);
+  --pad-btn-text: var(--text);
+  --pad-btn-border: var(--border);
+  --pad-pressed: #3b82f6;
+  display: grid;
+  gap: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.pad-stage .gamepad {
+  --pad-btn: #222c45;
+  --pad-btn-text: var(--slide-text);
+  --pad-btn-border: #34405f;
+}
+.gamepad-controller { touch-action: none; padding-top: 4px; }
+
+.gamepad-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+.pad-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--pad-btn-border);
+  border-radius: 999px;
+  background: var(--pad-btn);
+  color: var(--pad-btn-text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 60ms, background-color 60ms;
+}
+button.pad-btn { cursor: pointer; touch-action: none; }
+.pad-btn:focus-visible { outline: 2px solid var(--pad-pressed); outline-offset: 2px; }
+.pad-btn.pressed { background: var(--pad-pressed); border-color: var(--pad-pressed); color: #fff; transform: scale(0.94); }
+
+.pad-shoulder { width: 72px; height: 36px; }
+.pad-small { width: auto; height: 30px; padding: 0 12px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+.pad-cluster { display: grid; grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(3, 48px); gap: 2px; }
+.pad-dpad { grid-template-areas: ". up ." "left . right" ". down ."; }
+.pad-dpad .pad-btn { border-radius: 10px; }
+.pad-face { grid-template-areas: ". y ." "x . b" ". a ."; }
+.pad-up { grid-area: up; }
+.pad-down { grid-area: down; }
+.pad-left { grid-area: left; }
+.pad-right { grid-area: right; }
+.pad-y { grid-area: y; }
+.pad-x { grid-area: x; }
+.pad-b { grid-area: b; }
+.pad-a { grid-area: a; }
+
+.stick {
+  --x: 0;
+  --y: 0;
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border: 1px solid var(--pad-btn-border);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pad-btn) 60%, transparent);
+  touch-action: none;
+}
+.stick-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-radius: 50%;
+  background: var(--pad-btn-text);
+  opacity: 0.85;
+  transform: translate(calc(var(--x) * 32px), calc(var(--y) * 32px));
+  transition: transform 50ms linear;
+}
+.stick.pressed .stick-knob { background: var(--pad-pressed); opacity: 1; transition: none; }
+
+@media (max-width: 360px) {
+  .pad-cluster { grid-template-columns: repeat(3, 42px); grid-template-rows: repeat(3, 42px); }
+  .pad-cluster .pad-btn { width: 42px; height: 42px; }
+  .stick { width: 96px; height: 96px; }
+}
+
+.pad-btn svg { width: 1.25em; height: 1.25em; }

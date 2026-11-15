@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PairMesh presentation</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="card">
+        <section id="slide" class="slide" aria-live="polite">
+          <header class="slide-meta">
+            <span id="slide-section"></span>
+            <span>PairMesh demo</span>
+          </header>
+          <div class="slide-body">
+            <h1 id="slide-title"></h1>
+            <p id="slide-text"></p>
+          </div>
+          <footer class="slide-meta">
+            <span>Presentation</span>
+            <span id="slide-counter"></span>
+          </footer>
+        </section>
+
+        <div class="slide-controls">
+          <button id="previous" class="btn-icon" type="button" aria-label="Previous slide">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+          </button>
+          <button id="next" class="btn-icon" type="button" aria-label="Next slide">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+          </button>
+        </div>
+
+        <section class="panel">
+          <header class="panel-header">
+            <h2>Phone remote</h2>
+            <span id="badge" class="badge">Connecting…</span>
+          </header>
+
+          <p id="localhost-hint" class="hint" hidden>
+            Your phone can't open <code>localhost</code>. Open this page at the
+            <strong>Network</strong> address Vite printed so the QR code works.
+          </p>
+
+          <p data-show="connecting" class="muted center">Connecting to PairMesh…</p>
+          <p data-show="error" class="error center" hidden></p>
+
+          <div data-show="waiting" class="pairing-waiting" hidden>
+            <div id="qr" class="qr"></div>
+            <div class="pairing-help">
+              <p>Scan with your phone to use it as a remote. The code expires in 5 minutes.</p>
+              <a id="join-link" class="btn btn-secondary" target="_blank">Open remote in a new tab</a>
+              <button id="new-code" class="btn-link" type="button">New code</button>
+            </div>
+          </div>
+
+          <div data-show="requested" hidden>
+            <p class="muted center">A device scanned the code. Approve it to unlock the remote.</p>
+            <button id="approve" class="btn" type="button">Approve pairing</button>
+          </div>
+
+          <p data-show="approved" class="muted center" hidden>
+            Remote connected. Change slides from your phone.
+          </p>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/host.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>PairMesh gamepad – controller</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page page-pad">
+      <section class="panel card">
+        <header class="panel-header">
+          <h2>Gamepad</h2>
+          <span id="badge" class="badge">Connecting…</span>
+        </header>
+
+        <p data-show="connecting" class="muted center">Connecting…</p>
+        <p data-show="requested" class="muted center" hidden>
+          Waiting for the laptop to approve this device…
+        </p>
+        <p data-show="invalid" class="muted center" hidden>
+          This pairing code is invalid, expired, or already used. Scan the code on the laptop
+          again.
+        </p>
+        <div data-show="approved" id="controls" hidden></div>
+      </section>
+    </main>
+    <script type="module" src="/src/pad.js"></script>
+  </body>
+</html>

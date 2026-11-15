@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PairMesh remote</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page page-remote">
+      <section class="panel card">
+        <header class="panel-header">
+          <h2>Remote</h2>
+          <span id="badge" class="badge">Connecting…</span>
+        </header>
+
+        <p data-show="connecting" class="muted center">Connecting…</p>
+        <p data-show="requested" class="muted center" hidden>
+          Waiting for the presenter to approve this device…
+        </p>
+        <p data-show="invalid" class="muted center" hidden>
+          This pairing code is invalid, expired, or already used. Scan the code on the
+          presentation again.
+        </p>
+
+        <div data-show="approved" class="remote-controls" hidden>
+          <p id="remote-slide" class="remote-slide">Connected</p>
+          <button id="remote-previous" class="btn btn-secondary" type="button">Previous</button>
+          <button id="remote-next" class="btn" type="button">Next</button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/remote.js"></script>
+  </body>
+</html>

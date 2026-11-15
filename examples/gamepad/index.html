@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PairMesh gamepad</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="card">
+        <section class="pad-stage">
+          <div id="pad"></div>
+          <ol id="input-log" class="input-log" aria-live="polite">
+            <li class="empty">Press a button on the phone</li>
+          </ol>
+        </section>
+
+        <section class="panel">
+          <header class="panel-header">
+            <h2>Phone</h2>
+            <span id="badge" class="badge">Connecting…</span>
+          </header>
+
+          <p id="localhost-hint" class="hint" hidden>
+            Your phone can't open <code>localhost</code>. Open this page at the
+            <strong>Network</strong> address Vite printed so the QR code works.
+          </p>
+
+          <p data-show="connecting" class="muted center">Connecting to PairMesh…</p>
+          <p data-show="error" class="error center" hidden></p>
+
+          <div data-show="waiting" class="pairing-waiting" hidden>
+            <div id="qr" class="qr"></div>
+            <div class="pairing-help">
+              <p>Scan with your phone to use it as a gamepad. The code expires in 5 minutes.</p>
+              <a id="join-link" class="btn btn-secondary" target="_blank">Open in a new tab</a>
+              <button id="new-code" class="btn-link" type="button">New code</button>
+            </div>
+          </div>
+
+          <div data-show="requested" hidden>
+            <p class="muted center">A device scanned the code. Approve it to connect.</p>
+            <button id="approve" class="btn" type="button">Approve pairing</button>
+          </div>
+
+          <p data-show="approved" class="muted center" hidden>
+            Gamepad connected. Press buttons on your phone.
+          </p>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/src/host.js"></script>
+  </body>
+</html>
